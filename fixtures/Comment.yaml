@@ -1,0 +1,8 @@
+#Comment.yaml
+App\Entity\Comment:
+  comment{0..3000}:
+    content : "<sentence(15)>"
+    createdAt : '<dateTimeBetween("-5 years" , "now")>'
+    user : "@user*"
+    media : "@media*"
+    note : "<numberBetween(1,10)>"

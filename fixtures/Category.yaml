@@ -1,0 +1,8 @@
+#Category.yaml
+App\Entity\Category:
+  category0:
+    label: "White and Black"
+  category1:
+    label: "Sport"
+  category{2..50}:
+    label (unique) : "<word()>"

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{%  block  body %}
+
+    <h2>Media title: {{ media.title }}</h2>
+    <h5>Media description: {{ media.description }}</h5>
+    <h5>Media slug: {{ media.slug }}</h5>
+    <h5>Media created At : {{ media.createdAt|date('Y-m-d') }}</h5>
+    <h5>The comments are: </h5>
+
+    {% set i = 0 %}
+    {% for comment in media.comments %}
+        {% if i < 10 %}
+
+        <p>{{ comment }}</p>
+        {% set i = i +1 %}
+        {%  endif %}
+    {% endfor %}
+
+{% endblock body %}

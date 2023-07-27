@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MediaController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(searchForm) }}
+    {{ form_row(searchForm.mediaTitle) }}
+
+    {{ form_row(searchForm.userEmail) }}
+
+    {{ form_row(searchForm.createdAt) }}
+
+
+    <button type="submit">Search</button>
+    {{ form_end(searchForm) }}
+    <h2>All Media</h2>
+{#        <h4>The total media is : {{ medias|length }}</h4>#}
+    <h4>The total media is : {{ medias.getTotalItemCount }}</h4>
+
+    {% for media in medias %}
+
+        <a href="{{ path('app_media_show', {"id" : media.id }) }}">{{ media.title }}</a>
+
+
+    {% endfor %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(medias) }}
+    </div>
+
+    <a href="{{ path('app_media_new') }}">Create a new Media</a>
+{% endblock %}

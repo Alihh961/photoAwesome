@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(searchForm) }}
+
+    {{ form_row(searchForm.categoryLabel) }}
+
+    <button type="submit">Search</button>
+
+    {{ form_end(searchForm) }}
+
+
+    <h1> Number of categories :{{ categories.getTotalItemCount }} </h1>
+    <ul>
+    {% for category in categories %}
+
+    <li><a href="{{ path('app_category_show' , {'id' :  category.id }) }}">{{ category.label }}</a></li>
+        <a href="{{ path('app_category_delete' , { 'id' : category.id }) }}">Remove this Category</a>
+        <a href="{{ path('app_category_update' , { 'id' : category.id }) }}">Update this Category</a>
+
+        <br>
+        <br>
+        <br>
+
+
+    {% endfor %}
+    </ul>
+    <a>{{ knp_pagination_render(categories) }}</a>
+    <a href="{{ path("app_category_new") }}">Create a new Category</a>
+{% endblock %}
