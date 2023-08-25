@@ -1,21 +1,29 @@
 <div>
 
+
+    {% set medias = get_last_five_media() %}
+    <lu>
+        {% for media in medias %}
+            <li>
+                {{ media.price }}</li>
+        {% endfor %}
+    </lu>
     {% if app.user %}
-{#  if a user is connected#}
+        {#  if a user is connected #}
 
-    <a href="{{ path('app_logout') }}">Logout</a>
+        <a href="{{ path('app_logout') }}">Logout</a>
 
-            {%  if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_ADMIN') %}
 
-                <a href="{{ path('app_admin_index') }}">Adminstrator</a>
-{#                <h2>I am an admin</h2>#}
-            {% endif %}
+            <a href="{{ path('app_admin_index') }}">Adminstrator</a>
+            {#                <h2>I am an admin</h2> #}
+        {% endif %}
 
-        {% else %}
+    {% else %}
 
-{# if the user isn't connected#}
-            <a href="{{ path('app_login') }}">Login</a>
-            <a href="{{ path('app_register') }}">Register</a>
+        {# if the user isn't connected #}
+        <a href="{{ path('app_login') }}">Login</a>
+        <a href="{{ path('app_register') }}">Register</a>
 
 
 

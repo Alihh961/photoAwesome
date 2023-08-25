@@ -1,0 +1,15 @@
+{% block body %}
+    <h1>Non treated orders :</h1>
+    {% for order in orders %}
+        <div style="display: flex;gap:40px">
+            <div>
+                <p>Email : {{ order.email }}</p>
+                <p>Order Content : {{ order.messageContent }}</p>
+            </div>
+        </div>
+
+        <a href="{{ path('app_contact_delete' , { "id" : order.id })   }}"
+           style="display: block;background-color: green;width:fit-content;height:max-content;padding: 10px 15px;border-radius: 10px">Treat
+            the order</a>
+    {% endfor %}
+{% endblock body %}

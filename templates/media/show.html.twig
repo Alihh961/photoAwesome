@@ -6,6 +6,8 @@
     <h5>Media description: {{ media.description }}</h5>
     <h5>Media slug: {{ media.slug }}</h5>
     <h5>Media created At : {{ media.createdAt|date('Y-m-d') }}</h5>
+    <h5>Media Price : {{ media.price|euro }}</h5>
+
     <h5>The comments are: </h5>
 
     {% set i = 0 %}

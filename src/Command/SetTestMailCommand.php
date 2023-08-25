@@ -22,36 +22,34 @@ class SetTestMailCommand extends Command
 
     protected function configure(): void
     {
-
+//        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
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
 
-        $response = $this->httpClient->request(
-            "GET",
-            "https:/api.brevo.com/v3/smtp/email",
-            [
-                "headers" => [
-                    "accept" => "application/json", // we only receive reponse in json format
-                    "api-key" => "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",
-                    "content-type" => "application/json" // we only send data in json format
+        $response = $this->httpClient->request('POST', "https://api.brevo.com/v3/smtp/email", [
+            'headers' => [
+                'accept' => 'application/json',
+                'api-key' => "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",
+                'content-type' => 'application/json'
+            ],
+            'json' => [
+                "sender" => [
+                    'name' => "Kadidja Tiaiba",
+                    'email' => 'khadidja_du_73@outlook.fr'
                 ],
-                "json" => [ //content
-                    "sender" => [
-                        "name" => "Ali",
-                        "email" => "hajhassan.ali@outlook.com",
+                "to" => [
+                    [
+                        'email' => 'khadidja_du_73@outlook.fr',
+                        'name' => "Khadidja Tiaiba"
+                    ],
 
-                    ],
-                    "to" => [
-                        "name" => "AliHaj",
-                        "email" => "hajhassan.ali92@gmail.com"
-                    ],
-                    "subject"=>"Helloz!!!!",
-                    "htmlContent"=> "<p style='background-color:red;width:fit-content'>Hello there</p>"
-                ]
+                ],
+                "subject" => "Bonjour !!!!",
+                "htmlContent" => "<html><head></head><body ><p style='width:fit-content;background-color:red;color:white'>Wesh,</p>Regarde le mail.</p></body></html>"
             ]
-        );
+        ]);
 
 
         return Command::SUCCESS;

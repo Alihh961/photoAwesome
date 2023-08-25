@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 class Media
@@ -14,21 +15,27 @@ class Media
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["media"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["media"])]
     private ?string $filePath = null;
 
     #[ORM\ManyToOne(inversedBy: 'Medias')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["media"])]
     private ?User $user = null;
 
+    #[Groups(["media"])]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[Groups(["media"])]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[Groups(["media"])]
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
@@ -40,6 +47,9 @@ class Media
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'medias')]
     private Collection $categories;
+
+    #[ORM\Column]
+    private ?int $price = null;
 
     public function __construct()
     {
@@ -181,5 +191,17 @@ class Media
     public function __toString(): string
     {
         return $this->description;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): static
+    {
+        $this->price = $price;
+
+        return $this;
     }
 }
